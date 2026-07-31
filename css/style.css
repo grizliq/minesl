@@ -1,0 +1,427 @@
+/* ============================================================
+   Mine Slot — Тест1
+   Порядок подключения в index.html:
+     tokens.css → кнопки.css → palette-dark.css → style.css
+   ============================================================ */
+
+/* —— Каркас страницы —— */
+*,
+*::before,
+*::after { box-sizing: border-box; }
+
+html, body { margin: 0; padding: 0; }
+
+body {
+  min-height: 100vh;
+  font-family: var(--md-font-body);
+  color: var(--md-text);
+  background: var(--md-page-bg);
+  position: relative;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* —— Фон-слой (без background-attachment: fixed) —— */
+.page-bg {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background:
+    linear-gradient(
+      180deg,
+      rgba(10, 8, 6, 0.55) 0%,
+      rgba(10, 8, 6, 0.72) 100%
+    ),
+    url("../assets/bg/bg.png") center / cover no-repeat;
+}
+
+img { max-width: 100%; height: auto; }
+a  { color: var(--md-gold); }
+
+/* —— Ритм секций (СКРИПТ-ДИЗАЙН §1) —— */
+main > section {
+  padding-top: 22px;
+  padding-bottom: 22px;
+}
+
+@media (max-width: 640px) {
+  main > section { padding-top: 14px; padding-bottom: 14px; }
+}
+
+/* ============================================================
+   Шапка 05-compact-bar
+   ============================================================ */
+.md-header-bar { padding: 12px 0; }
+
+.md-header-bar__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+  background: var(--md-panel);
+  border: 3px solid var(--md-panel-border);
+  box-shadow: inset 0 0 0 2px var(--md-panel-inset);
+  padding: 8px 14px;
+}
+
+.md-header-bar__logo { line-height: 0; }
+.md-header-bar__logo img {
+  display: block;
+  width: auto; height: auto;
+  max-height: 40px;
+  max-width: min(160px, 40vw);
+  object-fit: contain;
+}
+
+.md-header-bar__nav { display: flex; flex-wrap: wrap; gap: 14px; }
+.md-header-bar__nav a {
+  font-family: var(--md-font-pixel);
+  text-transform: uppercase;
+  font-size: 12px;
+  color: var(--md-text);
+  text-decoration: none;
+  text-shadow: 0 2px 0 var(--md-shadow);
+}
+.md-header-bar__nav a:hover { color: var(--md-gold); }
+
+@media (max-width: 640px) {
+  .md-header-bar__inner { justify-content: center; }
+}
+
+/* ============================================================
+   Главная 03-video-cta
+   ============================================================ */
+.md-hero-simple { padding: 32px 0 24px; }
+
+.md-hero-simple__inner {
+  display: grid;
+  justify-items: center;
+  gap: 14px;
+  text-align: center;
+}
+
+.md-hero-simple__kicker {
+  margin: 0;
+  font-family: var(--md-font-pixel);
+  font-size: 22px;
+  text-transform: uppercase;
+  color: var(--md-text);
+  text-shadow: 0 3px 0 rgba(0, 0, 0, 0.55);
+}
+
+.md-hero-simple__frame {
+  width: min(560px, 92vw);
+  aspect-ratio: 16 / 9;
+  background: #000;
+  border: 4px solid rgba(0, 0, 0, 0.8);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.45);
+  overflow: hidden;
+}
+.md-hero-simple__frame video {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.md-hero-simple__note {
+  margin: 0;
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.75);
+}
+
+.md-hero-simple__actions {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 6px;
+}
+
+/* ============================================================
+   Промо 02-video-features
+   ============================================================ */
+.md-promo-features { padding: 10px 0 18px; }
+.md-promo-features__panel { display: grid; gap: 12px; }
+.md-promo-features__lead {
+  margin: 0;
+  font-size: 15px;
+  line-height: 1.5;
+  color: var(--md-text-soft);
+  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.4);
+}
+.md-promo-features__list {
+  margin: 0; padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 8px;
+  font-size: 14px;
+}
+.md-promo-features__list li {
+  position: relative;
+  padding-left: 18px;
+  line-height: 1.45;
+}
+.md-promo-features__list li::before {
+  content: "■";
+  position: absolute;
+  left: 0;
+  color: var(--md-bullet);
+  text-shadow: 0 2px 0 rgba(0, 0, 0, 0.55);
+}
+
+/* ============================================================
+   О игре 03-two-col
+   ============================================================ */
+.md-about-split { padding: 12px 0 18px; }
+
+.md-about-split__grid {
+  display: grid;
+  grid-template-columns: 1fr 1.1fr;
+  gap: 24px;
+  align-items: center;
+}
+
+.md-about-split__media {
+  display: grid;
+  place-items: center;
+}
+.md-about-split__media img {
+  width: min(320px, 62vw);
+  height: auto;
+  filter: drop-shadow(0 14px 22px var(--md-shadow));
+}
+
+.md-about-split__copy .md-title {
+  text-align: left;
+  font-size: clamp(18px, 2.6vw, 26px);
+  line-height: 1.35;
+  max-width: none;
+  white-space: nowrap;
+}
+
+.md-about-split__lead {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--md-text-soft);
+}
+
+@media (max-width: 760px) {
+  .md-about-split__grid { grid-template-columns: 1fr; }
+  .md-about-split__copy .md-title {
+    text-align: center;
+    white-space: normal;
+    font-size: clamp(16px, 4.5vw, 22px);
+  }
+}
+
+/* ============================================================
+   Бонусы 02-gold-cards
+   ============================================================ */
+.md-bonus-cards { padding: 16px 0 24px; }
+
+.md-bonus-cards__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+}
+
+.md-bonus-cards__card {
+  background: var(--md-panel);
+  border: 3px solid var(--md-panel-border);
+  box-shadow:
+    0 12px 24px rgba(0, 0, 0, 0.35),
+    inset 0 0 0 2px var(--md-panel-inset);
+  padding: 16px 14px;
+  text-align: center;
+  display: grid;
+  gap: 8px;
+  justify-items: center;
+  transition: transform 0.18s ease, box-shadow 0.18s ease;
+}
+.md-bonus-cards__card:hover {
+  transform: translateY(-2px);
+  box-shadow:
+    0 18px 30px rgba(0, 0, 0, 0.42),
+    inset 0 0 0 2px var(--md-panel-inset);
+}
+.md-bonus-cards__card img {
+  width: 64px; height: 64px;
+  object-fit: contain;
+  filter: drop-shadow(0 6px 8px rgba(0, 0, 0, 0.4));
+}
+.md-bonus-cards__card h3 {
+  margin: 0;
+  font-family: var(--md-font-pixel);
+  font-size: 22px;
+  text-transform: uppercase;
+  color: var(--md-gold);
+  text-shadow: 0 2px 0 rgba(0, 0, 0, 0.55);
+}
+.md-bonus-cards__card p {
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.4;
+  color: var(--md-text-soft);
+}
+
+@media (max-width: 720px) {
+  .md-bonus-cards__grid { grid-template-columns: 1fr; }
+}
+
+/* ============================================================
+   Как играть 03-horizontal
+   ============================================================ */
+.md-how-h { padding: 10px 0 18px; }
+
+.md-how-h__row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+
+.md-how-h__step {
+  background: var(--md-panel);
+  border: 3px solid var(--md-panel-border);
+  box-shadow: inset 0 0 0 2px var(--md-panel-inset);
+  padding: 14px 12px;
+  display: grid;
+  gap: 10px;
+  justify-items: center;
+  text-align: center;
+}
+
+.md-how-h__step span {
+  width: 36px; height: 36px;
+  display: grid; place-items: center;
+  font-family: var(--md-font-pixel);
+  background: var(--md-btn);
+  color: #1a0f0a;
+  border: 2px solid var(--md-stroke);
+  box-shadow: 0 3px 0 var(--md-shadow);
+  font-size: 18px;
+}
+
+.md-how-h__step p {
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.4;
+  color: var(--md-text-soft);
+}
+
+@media (max-width: 720px) {
+  .md-how-h__row { grid-template-columns: 1fr; }
+}
+
+/* ============================================================
+   FAQ 01-panel-rows
+   ============================================================ */
+.md-faq-panel { padding: 6px 0 16px; }
+.md-faq-panel__dl { margin: 0; display: grid; gap: 12px; }
+.md-faq-panel__row { display: grid; gap: 4px; }
+.md-faq-panel__row dt {
+  font-weight: 800;
+  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.45);
+  color: var(--md-text);
+}
+.md-faq-panel__row dd {
+  margin: 0;
+  color: var(--md-text-soft);
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+/* ============================================================
+   Подвал 03-split-links
+   ============================================================ */
+.md-footer-split { padding: 18px 0 26px; }
+
+.md-footer-split__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  flex-wrap: wrap;
+  padding-top: 14px;
+  border-top: 2px solid rgba(255, 255, 255, 0.18);
+}
+.md-footer-split__copy {
+  margin: 0;
+  font-family: var(--md-font-pixel);
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--md-text-soft);
+  text-shadow: 0 2px 0 var(--md-shadow);
+}
+.md-footer-split__nav {
+  display: flex; gap: 14px; flex-wrap: wrap;
+}
+.md-footer-split__nav a {
+  font-family: var(--md-font-pixel);
+  font-size: 11px;
+  text-transform: uppercase;
+  color: var(--md-gold);
+  text-decoration: none;
+}
+.md-footer-split__nav a:hover { text-decoration: underline; }
+
+@media (max-width: 640px) {
+  .md-footer-split__inner { justify-content: center; text-align: center; }
+}
+
+/* ============================================================
+   Модалка 01-notify-crimson
+   ============================================================ */
+.md-notify {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: grid;
+  place-items: center;
+  padding: 16px;
+}
+.md-notify[hidden] { display: none !important; }
+
+.md-notify__overlay {
+  position: absolute;
+  inset: 0;
+  border: 0;
+  background: rgba(0, 0, 0, 0.62);
+  cursor: pointer;
+}
+
+.md-notify__card {
+  position: relative;
+  z-index: 1;
+  width: min(540px, calc(100vw - 32px));
+  border: 8px solid #e8a113;
+  background: radial-gradient(circle at 50% 35%, #5d1414 0%, #4b0f10 62%, #3d0c0d 100%);
+  padding: 18px 20px 22px;
+  text-align: center;
+  box-shadow: 0 14px 40px rgba(0, 0, 0, 0.5);
+  display: grid;
+  justify-items: center;
+  gap: 12px;
+  animation: notifyIn 0.28s cubic-bezier(0.2, 0.9, 0.2, 1);
+}
+
+@keyframes notifyIn {
+  from { opacity: 0; transform: translateY(6px) scale(0.98); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.md-notify__gem {
+  display: block;
+  width: 130px;
+  height: auto;
+  image-rendering: pixelated;
+}
+.md-notify__title {
+  font-size: clamp(1.35rem, 4.2vw, 2.05rem);
+  line-height: 1.35;
+  margin: 8px 0 10px;
+}
+.md-notify__cta { min-width: 186px; }
